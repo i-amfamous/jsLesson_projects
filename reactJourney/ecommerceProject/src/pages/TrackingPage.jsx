@@ -5,7 +5,7 @@ import Header from '../components/Header';
 const trackingPage = () => {
   return (
     <>
-     <title>rack-Orders</title>
+     <title>Track-Orders</title>
     <Header />
       <div className="header">
         <div className="left-section">

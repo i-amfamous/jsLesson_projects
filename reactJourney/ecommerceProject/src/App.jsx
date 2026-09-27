@@ -2,7 +2,8 @@ import { Routes, Route } from 'react-router';
 import HomePage  from './pages/HomePage'
 import CheckOut from './pages/CheckOut'
 import Orders from './pages/Orders'
-import TrackingPage  from './pages/trackingPage'; 
+import TrackingPage  from './pages/TrackingPage';
+
 const App = () => {
   return (
    <>

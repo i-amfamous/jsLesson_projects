@@ -1,10 +1,11 @@
 import Header from "../components/Header";
 import "./HomePage.css";
-
+// import Home from '/images/icons/buy-again.png'
 const HomePage = () => {
   return (
     <>
       <title>Ecommerce App</title>
+       {/* <link rel={Home} type="image/svg+xml" href="/favicon.svg" /> */}
       <Header />
       <div className="home-page">
         <div className="products-grid">

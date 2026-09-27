@@ -20,7 +20,7 @@ const navItems = [
 const socials = [
   { icon: whatsapp, alt: 'WhatsApp', href: 'https://wa.me/233555555555' },
   { icon: linkedin, alt: 'LinkedIn', href: 'https://www.linkedin.com' },
-  { icon: github, alt: 'GitHub', href: 'https://github.com' },
+  { icon: github, alt: 'GitHub', href: 'https://github.com/i-amfamous' },
 ];
 
 const contacts = [

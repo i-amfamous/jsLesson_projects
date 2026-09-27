@@ -30,7 +30,7 @@ const reasons = [
   {
     index: '04',
     title: 'Scalable Solutions',
-    body: 'Whether you’re a small business or a large enterprise, our system grows with your needs.',
+    body: 'Whether you are a small business or a large enterprise, our system grows with your needs.',
   },
 ];
 
