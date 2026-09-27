@@ -151,7 +151,12 @@
 
 .home-page .add-to-cart-button {
   width: 100%;
-  padding: 8px;
-  height: 34px;
+  /* padding: 10px; */
+  height: 44px;
   margin-top: 1px;
+  background-color: green;
+  color: white;
+  border: none;
+  font-size: 20px;
+  border-radius: 5px;
 }
