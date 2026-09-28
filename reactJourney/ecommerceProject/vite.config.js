@@ -8,7 +8,16 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] })
   ],
-  server: {
-    port: 3000,
+   server:{
+    port:3000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000'
+      },
+      '/images':{
+         target: 'http://localhost:3000'
+      }
+    }
   }
+ 
 })
