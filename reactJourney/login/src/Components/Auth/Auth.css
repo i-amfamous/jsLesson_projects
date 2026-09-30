@@ -10,8 +10,8 @@
 .authCard {
   position: relative;
   width: 100%;
-  max-width: 68rem;
-  min-height: 34rem;
+  max-width: 72rem;
+  min-height: 38rem;
   border-radius: var(--radius-lg);
   background: #fff;
   box-shadow: 0 30px 70px rgba(29, 29, 31, 0.18);
@@ -86,39 +86,55 @@
 
 /* ---------------------------------------------------------------- forms */
 
+/* Both forms share one grid cell, so the card is as tall as the taller form
+   and switching states never shifts the layout. Each is 50% wide and slides
+   out past the edge of the card, away from the red panel. */
 .authStage {
   position: relative;
-  height: 100%;
-  min-height: inherit;
+  z-index: 2;
+  display: grid;
+  align-items: center;
 }
 
 .authForm {
-  position: absolute;
-  top: 0;
+  grid-area: 1 / 1;
   width: 50%;
-  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 3rem 3.5rem;
-  transition: left 0.5s var(--ease), opacity 0.35s var(--ease);
+  padding: 2.5rem 2.5rem;
+  transition: transform 0.5s var(--ease), opacity 0.35s var(--ease);
 }
 
-.isLogin .authFormLogin,
-.isSignUp .authFormSignUp {
-  left: 50%;
+.authFormLogin {
+  justify-self: end;
+  transform: translateX(0);
+}
+
+.authFormSignUp {
+  justify-self: start;
+  transform: translateX(0);
+}
+
+.isLogin .authFormLogin {
+  transform: translateX(0);
   opacity: 1;
   pointer-events: auto;
 }
 
 .isLogin .authFormSignUp {
-  left: 0;
+  transform: translateX(-100%);
   opacity: 0;
   pointer-events: none;
 }
 
+.isSignUp .authFormSignUp {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .isSignUp .authFormLogin {
-  left: 100%;
+  transform: translateX(100%);
   opacity: 0;
   pointer-events: none;
 }
@@ -156,11 +172,10 @@
   }
 
   .authForm {
-    position: static;
     width: 100%;
-    height: auto;
+    justify-self: stretch;
     padding: 2.5rem 1.5rem;
-    left: auto;
+    transform: none;
   }
 
   .isLogin .authFormSignUp,
