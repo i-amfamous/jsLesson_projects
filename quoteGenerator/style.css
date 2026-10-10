@@ -1,0 +1,96 @@
+      :root {
+        --bg-top: #f5efe6;
+        --bg-bottom: #e9f0ff;
+        --card-bg: rgba(255, 255, 255, 0.85);
+        --primary: #2d3a5d;
+        --secondary: #7a5cfa;
+        --text: #1f2a37;
+        --shadow: rgba(45, 58, 93, 0.15);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, var(--bg-top), var(--bg-bottom));
+        color: var(--text);
+        padding: 2rem 1rem;
+      }
+
+      h1 {
+        margin: 0 0 1.5rem;
+        font-size: clamp(2.3rem, 5vw, 4rem);
+        color: var(--primary);
+        letter-spacing: -0.08em;
+        text-align: center;
+        line-height: 1;
+      }
+
+      .quote {
+        width: min(90vw, 740px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: 1.5rem;
+        box-shadow: 0 18px 40px var(--shadow);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(122, 92, 250, 0.12);
+      }
+
+      .btn {
+        padding: 0.9rem 1.5rem;
+        border: none;
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        border-radius: 999px;
+        cursor: pointer;
+        color: white;
+        background: linear-gradient(135deg, var(--secondary), #4f7cff);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        box-shadow: 0 10px 20px rgba(122, 92, 250, 0.3);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.05);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      .quoteMessage {
+        margin: 1.5rem 0 0.75rem;
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        padding: 1.5rem 1.25rem;
+        background: rgba(240, 244, 255, 0.9);
+        border-radius: 1rem;
+        color: var(--text);
+        font-style: italic;
+        font-weight: 500;
+        text-align: center;
+        width: 100%;
+        line-height: 1.6;
+      }
+
+      .arthur {
+        min-height: 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        font-style: italic;
+        text-align: center;
+        color: var(--primary);
+        letter-spacing: 0.04em;
+      }
