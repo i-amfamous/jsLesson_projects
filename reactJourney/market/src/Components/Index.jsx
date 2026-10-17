@@ -2,6 +2,8 @@ import {Link} from 'react-router'
 import POS from "../assets/POS.JPG";
 import Header from './Header'
 import Footer from './Footer'
+import AnimatedIcon from './AnimatedIcon'
+import { contactDetails } from '../contactDetails'
 import "./Index.css";
 
 const stats = [
@@ -14,21 +16,25 @@ const stats = [
 const reasons = [
   {
     index: '01',
+    icon: 'business',
     title: 'Business Management',
     body: 'Our POS system combines sales, inventory, customer management and payment processing into one easy-to-use platform.',
   },
   {
     index: '02',
+    icon: 'insights',
     title: 'Real-Time Insights',
     body: 'Monitor your business performance with detailed reports and dashboards that help you make informed decisions.',
   },
   {
     index: '03',
+    icon: 'secure',
     title: 'Secure & Reliable',
     body: 'Protect your business data with advanced security features and reliable cloud storage.',
   },
   {
     index: '04',
+    icon: 'growth',
     title: 'Scalable Solutions',
     body: 'Whether you are a small business or a large enterprise, our system grows with your needs.',
   },
@@ -37,31 +43,37 @@ const reasons = [
 const features = [
   {
     tag: 'Checkout',
+    icon: 'checkout',
     title: 'Lightning-fast checkout',
     body: 'Keyboard-first workflows, offline mode and instant receipts keep the queue moving, even on your busiest Saturday.',
   },
   {
     tag: 'Inventory',
+    icon: 'inventory',
     title: 'Stock that counts itself',
     body: 'Every sale updates stock levels in real time, so what you see on screen is what is actually on the shelf.',
   },
   {
     tag: 'Reports',
+    icon: 'reports',
     title: 'Numbers you can act on',
     body: 'Sales, margins, best sellers and slow movers, available for any day, till or product line.',
   },
   {
     tag: 'Offline',
+    icon: 'offline',
     title: 'Works without internet',
     body: 'Keep selling through an outage. Sales sync automatically the moment your connection is back.',
   },
   {
     tag: 'Team',
+    icon: 'team',
     title: 'Roles and permissions',
     body: 'Give every member of staff exactly the access they need, from cashier to store manager.',
   },
   {
     tag: 'Loyalty',
+    icon: 'loyalty',
     title: 'Customers come back',
     body: 'Built-in loyalty points and customer records turn one-time buyers into regulars.',
   },
@@ -136,8 +148,6 @@ const benefits = [
   'Comprehensive sales reporting',
   'Cloud-based data synchronization',
   'Customer loyalty and rewards programs',
-  'Customer loyalty and rewards programs',
-  'Fast and accurate checkout process',
 ];
 
 const faqs = [
@@ -180,8 +190,8 @@ const Index = () => {
               business with our powerful POS system.
             </p>
             <div className="homeActions">
-              <Link to="/about" className="btn btnPrimary">Get Started →</Link>
-              <a className="btn btnGhost" href="#pricing">See pricing</a>
+              <Link to="/about" className="btn btnPrimary">Get Started <span className="buttonArrow" aria-hidden="true">↗</span></Link>
+              <Link className="btn btnGhost" to="/pricing">See pricing <span className="buttonArrow" aria-hidden="true">↗</span></Link>
             </div>
           </div>
 
@@ -205,8 +215,9 @@ const Index = () => {
           <h2 className="sectionTitle homeSectionTitle">Why Choose Us?</h2>
 
           <div className="homeCards">
-            {reasons.map(({ index, title, body }) => (
+            {reasons.map(({ index, icon, title, body }) => (
               <article className="homeCard" key={index}>
+                <AnimatedIcon name={icon} />
                 <span className="homeCardIndex">{index}</span>
                 <h3 className="homeCardTitle">{title}</h3>
                 <p className="homeCardText">{body}</p>
@@ -223,8 +234,9 @@ const Index = () => {
           </p>
 
           <div className="homeFeatures">
-            {features.map(({ tag, title, body }) => (
+            {features.map(({ tag, icon, title, body }) => (
               <article className="homeFeature" key={tag}>
+                <AnimatedIcon name={icon} />
                 <span className="homeTag">{tag}</span>
                 <h3 className="homeFeatureTitle">{title}</h3>
                 <p className="homeFeatureText">{body}</p>
@@ -311,9 +323,9 @@ const Index = () => {
 
                 <a
                   className={`btn ${featured ? 'btnPrimary' : 'btnGhost'} homePlanCta`}
-                  href="mailto:hello@techxmarket.com"
+                  href={`mailto:${contactDetails.email}?subject=${encodeURIComponent(`${cta === 'Talk to sales' ? 'Talk to sales' : 'Start free trial'} — ${name} plan`)}&body=${encodeURIComponent(`Hello TechX Market,\n\nI’m interested in the ${name} plan. Please share the next steps.\n`)}`}
                 >
-                  {cta}
+                  {cta} <span className="buttonArrow" aria-hidden="true">↗</span>
                 </a>
               </article>
             ))}
@@ -338,7 +350,8 @@ const Index = () => {
 
         <section className="homeCta" id="contact">
           <h2 className="homeCtaTitle">Ready to Work Smart?</h2>
-          <a className="btn btnLight" href="mailto:hello@techxmarket.com">Send a Dm →</a>
+          <p>See how TechX can simplify your next business day.</p>
+          <a className="btn btnLight" href={`mailto:${contactDetails.email}?subject=Request%20a%20TechX%20POS%20demo`}>Request a demo <span className="buttonArrow" aria-hidden="true">↗</span></a>
         </section>
       </main>
 

@@ -4,29 +4,32 @@ import github from "../assets/github-fill.svg";
 import mail from "../assets/mail-fill.svg";
 import phone from "../assets/phone-fill (1).svg";
 import pin from "../assets/map-pin-line.svg";
+import { contactDetails } from '../contactDetails'
 import './Footer.css'
 
 const navItems = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
-  { label: 'Why Choose Us', href: '/#why' },
-  { label: 'Features', href: '/#features' },
-  { label: 'How it works', href: '/#how' },
-  { label: 'Pricing', href: '/#pricing' },
-  { label: 'FAQ', href: '/#faq' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Why Choose Us', href: '/why' },
+  { label: 'Features', href: '/features' },
+  { label: 'How it works', href: '/how-it-works' },
+  { label: 'Benefits', href: '/benefits' },
+  { label: 'Reviews', href: '/reviews' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'FAQ', href: '/faq' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 const socials = [
-  { icon: whatsapp, alt: 'WhatsApp', href: 'https://wa.me/233555555555' },
+  { icon: whatsapp, alt: 'WhatsApp', href: contactDetails.whatsappUrl },
   { icon: linkedin, alt: 'LinkedIn', href: 'https://www.linkedin.com' },
   { icon: github, alt: 'GitHub', href: 'https://github.com/i-amfamous' },
 ];
 
 const contacts = [
-  { icon: pin, text: 'Osu, Accra — Ghana', href: '/#contact' },
-  { icon: mail, text: 'hello@techxmarket.com', href: 'mailto:hello@techxmarket.com' },
-  { icon: phone, text: '+233 55 555 5555', href: 'tel:+233555555555' },
+  { icon: pin, text: contactDetails.location, href: '/contact' },
+  { icon: mail, text: contactDetails.email, href: `mailto:${contactDetails.email}` },
+  { icon: phone, text: contactDetails.phoneDisplay, href: `tel:${contactDetails.phone}` },
 ];
 
 /* Icons are painted with a CSS mask, so a single `color` rule controls them

@@ -99,6 +99,14 @@
   transform: translateY(-2px);
 }
 
+.icons a .footerIcon {
+  transition: transform var(--speed) var(--ease);
+}
+
+.icons a:hover .footerIcon {
+  transform: rotate(-8deg) scale(1.12);
+}
+
 /* ------------------------------------------------------------------- nav */
 
 .navList {

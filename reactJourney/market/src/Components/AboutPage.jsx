@@ -3,6 +3,8 @@ import Footer from './Footer'
 import HeroPos from '../assets/HeroPos.png'
 import QR from '../assets/QR.jpeg'
 import POS from '../assets/POS.JPG'
+import AnimatedIcon from './AnimatedIcon'
+import { contactDetails } from '../contactDetails'
 import './AboutPage.css'
 
 const stats = [
@@ -15,21 +17,25 @@ const stats = [
 const values = [
   {
     tag: 'Clarity',
+    icon: 'clarity',
     title: 'Clarity over clutter',
     body: 'Every screen answers one question. We remove features nobody uses instead of adding more menus.',
   },
   {
     tag: 'Speed',
+    icon: 'speed',
     title: 'Built for the counter',
     body: 'A busy Saturday is the real test. We design for fast keys, big targets and zero dead ends.',
   },
   {
     tag: 'Trust',
+    icon: 'trust',
     title: 'Trust by default',
     body: 'Offline resilience, encrypted data and a full audit trail of who did what, and when.',
   },
   {
     tag: 'Growth',
+    icon: 'growth',
     title: 'Grows without limits',
     body: 'One till today, fifty locations tomorrow — the same account, the same habits, no migration.',
   },
@@ -79,7 +85,7 @@ const AboutPage = () => {
                 Everything your business needs to sell, manage, monitor, and grow, organized in one intelligent platform. From the first transaction of the day to the final business report, every important operation is connected
               </p>
               <div className="aboutActions">
-                <a className="btn btnPrimary" href="mailto:hello@techxmarket.com">Request a demo</a>
+                <a className="btn btnPrimary" href={`mailto:${contactDetails.email}`}>Request a demo</a>
                 <a className="btn btnGhost" href="#team">Meet the team</a>
               </div>
             </div>
@@ -114,6 +120,21 @@ const AboutPage = () => {
             </div>
           </section>
 
+          <section className="aboutSection aboutSectionAlt">
+            <div className="aboutBody">
+              <div className="aboutIntro">
+                <span className="eyebrow">One connected workflow</span>
+                <h2 className="sectionTitle">From the first sale to the next decision.</h2>
+              </div>
+
+              <div className="aboutText">
+                <p>At the counter, staff need a clear way to find products, complete payments and issue receipts. TechX brings those everyday checkout steps together with the product records behind each sale.</p>
+                <p>After transactions are recorded, inventory and reporting tools help teams review what moved and what needs attention. Customer records and loyalty features keep useful details close to the sales workflow.</p>
+                <p>As the operation changes, teams can add staff, tills and locations while keeping the connected workspace they already use.</p>
+              </div>
+            </div>
+          </section>
+
           <section className="aboutSection aboutSectionAlt" id="values">
             <header className="aboutSectionHead">
               <span className="eyebrow">What we believe</span>
@@ -121,8 +142,9 @@ const AboutPage = () => {
             </header>
 
             <div className="aboutValues">
-              {values.map(({ tag, title, body }) => (
+              {values.map(({ tag, icon, title, body }) => (
                 <article className="aboutValue" key={tag}>
+                  <AnimatedIcon name={icon} />
                   <span className="aboutTag">{tag}</span>
                   <h3 className="aboutValueTitle">{title}</h3>
                   <p className="aboutValueText">{body}</p>
@@ -204,7 +226,7 @@ const AboutPage = () => {
               Tell us how you sell today and we’ll show you what changes on
               Monday morning.
             </p>
-            <a className="btn btnLight" href="mailto:hello@techxmarket.com">Send a Dm →</a>
+            <a className="btn btnLight" href={`mailto:${contactDetails.email}?subject=Request%20a%20TechX%20POS%20demo`}>Request a demo <span className="buttonArrow" aria-hidden="true">↗</span></a>
           </section>
         </main>
 

@@ -1,3 +1,5 @@
+import { contactDetails } from '../contactDetails'
+
 export const legalContent = {
   privacy: {
     title: 'Privacy Policy',
@@ -51,7 +53,7 @@ export const legalContent = {
         title: 'Your rights',
         body: [
           'You can request a copy of the personal data we hold about you, ask us to correct anything inaccurate, ask us to delete data we no longer need, or object to processing based on legitimate interests.',
-          'Write to privacy@techxmarket.com and we will respond within 30 days. You also have the right to complain to the Data Protection Commission of Ghana.',
+          `Write to ${contactDetails.email} and we will respond within 30 days. You also have the right to complain to the Data Protection Commission of Ghana.`,
         ],
       },
       {
@@ -66,7 +68,7 @@ export const legalContent = {
         id: 'contact-us',
         title: 'Contact us',
         body: [
-          'Questions about this policy can be sent to privacy@techxmarket.com or by post to TechX Market, Osu, Accra, Ghana.',
+          `Questions about this policy can be sent to ${contactDetails.email} or by post to TechX Market, ${contactDetails.location}.`,
         ],
       },
     ],
@@ -179,7 +181,7 @@ export const legalContent = {
         title: 'Changes and contact',
         body: [
           'We may modify or discontinue parts of the service, but we will give reasonable notice before a change that materially reduces functionality you have paid for.',
-          'Questions about these terms can be sent to legal@techxmarket.com or to TechX Market, Osu, Accra, Ghana.',
+          `Questions about these terms can be sent to ${contactDetails.email} or to TechX Market, ${contactDetails.location}.`,
         ],
       },
     ],

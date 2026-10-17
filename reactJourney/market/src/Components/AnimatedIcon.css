@@ -1,0 +1,50 @@
+.animatedIcon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 0.25rem;
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  border-radius: 0.9rem;
+  animation: iconDrift 4.8s ease-in-out infinite;
+  transition: color var(--speed) var(--ease), background-color var(--speed) var(--ease),
+    transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
+}
+
+.animatedIcon svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--speed) var(--ease);
+}
+
+.homeCard:hover .animatedIcon,
+.homeFeature:hover .animatedIcon,
+.aboutValue:hover .animatedIcon {
+  color: #fff;
+  background: var(--color-accent);
+  box-shadow: 0 7px 18px rgba(245, 99, 0, 0.22);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.homeCard:hover .animatedIcon svg,
+.homeFeature:hover .animatedIcon svg,
+.aboutValue:hover .animatedIcon svg {
+  transform: rotate(-7deg);
+}
+
+@keyframes iconDrift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animatedIcon {
+    animation: none;
+  }
+}
