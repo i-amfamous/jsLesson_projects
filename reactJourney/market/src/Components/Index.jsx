@@ -218,7 +218,7 @@ const Index = () => {
         <section className="homeSection homeSectionAlt" id="features">
           <h2 className="sectionTitle homeSectionTitle">Everything in one system</h2>
           <p className="homeSectionLede">
-            Six tools that normally need six different apps — designed to work
+            Six tools that normally need six different apps, designed to work
             together from day one.
           </p>
 
@@ -287,7 +287,7 @@ const Index = () => {
         <section className="homeSection homeSectionAlt" id="pricing">
           <h2 className="sectionTitle homeSectionTitle">Simple, predictable pricing</h2>
           <p className="homeSectionLede">
-            Start free for 14 days. Cancel whenever you like — your data stays
+            Start free for 14 days. Cancel whenever you like, your data stays
             exportable.
           </p>
 

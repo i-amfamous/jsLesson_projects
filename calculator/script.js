@@ -46,7 +46,7 @@ equalSign.addEventListener("click", () => {
   display.value = result;
 });
 
-clear.addEventListener("click", () => git {
+clear.addEventListener("click", () => {
   display.value = "";
   secondNumber = "";
   operator = "";

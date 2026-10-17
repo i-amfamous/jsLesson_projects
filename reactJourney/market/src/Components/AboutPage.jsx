@@ -59,7 +59,7 @@ const milestones = [
 ];
 
 const team = [
-  { initials: 'AO', name: 'Ama Owusu', role: 'Co-founder & CEO' },
+  { initials: 'AWN', name: 'Amos Wuborija Nganbe', role: 'Co-founder & CEO' },
   { initials: 'KM', name: 'Kwame Mensah', role: 'Co-founder & CTO' },
   { initials: 'FB', name: 'Fatima Bello', role: 'Head of Product' },
   { initials: 'YB', name: 'Yaw Boateng', role: 'Customer Success Lead' },
@@ -108,7 +108,7 @@ const AboutPage = () => {
               </div>
 
               <div className="aboutText">
-                <p>Your checkout should help your team move quickly—not slow them down. Our POS interface is designed to make everyday transactions straightforward, efficient, and easy to understand.</p>
+                <p>Your checkout should help your team move quickly, not slow them down. Our POS interface is designed to make everyday transactions straightforward, efficient, and easy to understand.</p>
                 <p>Inventory problems can affect your cash flow, customer experience, and profitability. Our inventory tools give you a clearer picture of what's happening with your products.</p>
               </div>
             </div>
