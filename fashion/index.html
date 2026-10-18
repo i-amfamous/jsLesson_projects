@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <title>CULTURE / 001</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+</style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-logo">
+                <a href="index.html"><img src="img/logo.png" alt="Logo">CULTURE / 001</a>
+            </div>
+            <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="header-nav" id="site-navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="about.html">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        <div class="header-cart">
+            <a href="cart.html"><img src="img/cart.svg" alt="Cart" height="30"></a>
+            <p class="cartCount">0</p>
+        </div>
+        </div>
+    </header>
+
+    <main>
+         <section class="hero">
+            <h1>DRESS LIKE YOU MEAN IT</h1>
+            <p>We believe fashion is more than what you wear, it's how you express yourself without saying a word. Our brand was built on the idea that confidence begins with authenticity, and true style has no rules.</p>
+            <div class="hero-buttons">
+                <a href="shop.html" class="btn">EXPLORE THE COLLECTION</a>
+                <a href="about.html" class="btn">DISCOVER YOUR STYLE</a>
+            </div>
+        </section>
+
+        <div class="featuredProducts">
+            <h2>Featured Products</h2>
+            <section class="products">
+            </section>
+        </div>
+
+        <div class="goals">
+            <div class="left-goal">
+                <p>OUR PHILOSOPHY</p>
+                <h2>STYLE IS PERSONAL. MAKE IT YOURS.</h2>
+                <p>We believe fashion is more than what you wear,  it's how you express yourself without saying a word. Our brand was built on the idea that confidence begins with authenticity, and true style has no rules.</p>
+                <p>Every detail, every design, and every collection reflects our commitment to individuality, creativity, and timeless expression. We create for those who don't follow the crowd, but define their own direction.</p>
+            </div>
+            <div class="right-goal">
+                <h3>BUILT ON CULTURE. DRIVEN BY CREATIVITY.</h3>
+                <p>Our vision is to redefine modern fashion by bringing together quality, creativity, and individuality. We aim to create a brand that inspires people to embrace their uniqueness, express their identity, and move through life with confidence.</p>
+                <p>We are not here to tell you who to be. We are here to inspire you to be unapologetically yourself.</p>
+            </div>
+            <div class="left-goal">
+                <h3>NOT JUST CLOTHING. A WAY OF LIFE.</h3>
+                <p>Every piece tells a story. Every look carries an attitude. Every collection represents a new opportunity to express something different.</p>
+                <p>We see fashion as a language — one that connects culture, creativity, and personal identity. Our purpose is to give that language a voice through thoughtful design and a distinctive point of view.</p>
+            </div>
+            <div class="right-goal">
+                <h3>DETAILS MATTER. QUALITY SPEAKS.</h3>
+                <p>We believe great fashion begins with intention. From the way a piece looks to how it feels and fits, we value the details that make the difference.</p>
+                <p>Our goal is to deliver an experience that goes beyond appearance, one built around thoughtful design, a distinctive identity, and a commitment to quality.</p>
+            </div>
+            <div class="left-goal">
+                <h3>FOR THOSE WHO MOVE DIFFERENTLY.</h3>
+                <p>For the bold thinkers. The creatives. The dreamers. The ones who embrace their individuality and turn everyday moments into opportunities for self-expression.</p>
+                <p>This is fashion for people who know that standing out isn't about being louder. It's about being yourself.</p>
+            </div>
+            <div class="right-goal">
+                <h3>YOUR STYLE. YOUR STORY. YOUR RULES.</h3>
+                <p>Your identity is your greatest statement. Wear it with confidence. Express it without limits. Make every look your own.</p>
+                <a href="shop.html" class="btn">EXPLORE THE COLLECTION</a>
+            </div>
+        </div>
+
+        <section class="review" aria-labelledby="reviews-title">
+            <div class="review-heading">
+                <div>
+                    <h2 id="reviews-title">Worn with confidence.</h2>
+                </div>
+                <div class="review-controls" aria-label="Review carousel controls">
+                    <button class="review-control" type="button" data-review-direction="previous" aria-label="Previous review">
+                        <span aria-hidden="true">&larr;</span>
+                    </button>
+                    <button class="review-control" type="button" data-review-direction="next" aria-label="Next review">
+                        <span aria-hidden="true">&rarr;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="review-viewport">
+                <div class="userReview" aria-live="polite"></div>
+            </div>
+        </section>
+    </main>
+    <script src="nav.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
