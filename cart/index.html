@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f5f8">
+    <title>GoodGoods — Shop smarter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <a class="brand" href="#" aria-label="GoodGoods home">
+                <span class="brand-mark" aria-hidden="true">g</span>
+                <span>goodgoods<span class="brand-period">.</span></span>
+            </a>
+            <div class="header-note">Thoughtful tech. Better everyday.</div>
+            <a class="header-cart-link" href="#cart" aria-label="View cart, 0 items">
+                <i class="fa-solid fa-bag-shopping header-cart-icon" aria-hidden="true"></i>
+                <span class="header-cart-label">Cart</span>
+                <span class="cart-count" id="cart-count">0</span>
+            </a>
+        </header>
+
+        <main class="store-layout">
+            <section class="catalog" aria-labelledby="catalog-title">
+                <div class="catalog-intro">
+                    <h1 id="catalog-title">Gear up for <span>what's next.</span></h1>
+                    <p class="catalog-subtitle">Explore our picks for work, play, and everything in between.</p>
+                </div>
+                <div class="catalog-toolbar">
+                    <h2>All products</h2>
+                    <span class="catalog-note">Curated for your setup</span>
+                </div>
+                <div class="content" aria-live="polite"></div>
+            </section>
+
+            <aside class="cart" id="cart" aria-labelledby="cart-title">
+                <div class="cart-heading">
+                    <div>
+                        <h2 id="cart-title">Your cart</h2>
+                    </div>
+                    <span class="cart-count cart-count-large" id="cart-item-count">0</span>
+                </div>
+
+                <div class="cart-items" id="cart-items">
+                    <div class="cart-empty" id="cart-empty">
+                        <div class="empty-bag" aria-hidden="true">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <h3>Your cart is empty</h3>
+                        <p>Add something you love and it'll show up here.</p>
+                    </div>
+
+                    <div class="item" id="cart-item-list"></div>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span class="cart-subtotal" id="cart-subtotal">$0.00</span>
+                    </div>
+                    <p class="shipping-note">Shipping and taxes calculated at checkout.</p>
+                    <button class="checkout-button" type="button" disabled>Continue to checkout <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+                    <p class="secure-note"><i class="fa-solid fa-shield-heart" aria-hidden="true"></i> Easy checkout. No surprises.</p>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -4,5 +4,6 @@
             "path": "jsLesson_projects/calculator/",
             "color": "foldercustomization.AnsiColor161"
         }
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }
