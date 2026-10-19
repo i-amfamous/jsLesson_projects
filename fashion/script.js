@@ -579,3 +579,7 @@ if (reviewSlides.length > 0) {
     });
   });
 }
+
+const footerDate = document.querySelector(".footerDate");
+const currentYear = new Date().getFullYear();
+footerDate.textContent = currentYear;
