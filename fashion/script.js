@@ -189,7 +189,7 @@ newFeaturedProducts.forEach((product) => {
 
   const originalPrice = document.createElement("span");
   originalPrice.classList.add("original-price");
-  originalPrice.textContent = `Price: $GHC{product.price.toFixed(2)}`;
+  originalPrice.textContent = `Price: GHC ${product.price.toFixed(2)}`;
 
   const priceContainer = document.createElement("div");
   priceContainer.classList.add("price-container");
