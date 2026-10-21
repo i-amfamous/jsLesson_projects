@@ -7,7 +7,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-optical-sizing: auto;
-    --accent: #e8754c;
+    --accent: #f04405;
     --accent-soft: #fff0e9;
     --muted: #85899a;
     --border: #eceef3;
@@ -21,10 +21,83 @@ body {
     min-width: 320px;
     min-height: 100vh;
     margin: 0;
-    background:
-        radial-gradient(ellipse at 85% 0%, rgba(255, 231, 216, 0.44), transparent 32rem),
-        #f6f7fb;
+    background-color: white;
 }
+
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal h2 {
+    margin-top: 0;
+}
+
+.modal input,
+.modal textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    font: inherit;
+}
+
+.modal textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal-buttons button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+#closeModal {
+    background: #eee;
+}
+
+.modal-buttons button[type="submit"] {
+    background: #e74c3c;
+    color: white;
+}
+
+.messageInfo.completed .taskName,
+.messageInfo.completed .message {
+    text-decoration: line-through;
+    color: #9296a4;
+}
+
 
 button {
     font: inherit;
@@ -94,7 +167,7 @@ main .sidebar {
     opacity: 0.58;
 }
 
-.sidebar .action .addNote {
+.sidebar .action span.addNote {
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
@@ -395,7 +468,7 @@ button:focus-visible {
         margin-bottom: 1rem;
     }
 
-    .sidebar .action .addNote {
+    .sidebar .action span.addNote {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }

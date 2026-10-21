@@ -1,0 +1,179 @@
+<!-- Modal -->
+<div class="modal-overlay" id="taskModal">
+    <div class="modal">
+
+        <form id="taskForm">
+            <input
+                type="text"
+                id="taskTitle"
+                placeholder="Task name"
+                required
+            >
+
+            <textarea
+                id="taskDescription"
+                placeholder="Description"
+            ></textarea>
+
+            <input type="date" id="taskDate">
+
+            <input type="time" id="taskTime">
+
+            <div class="modal-buttons">
+                <button type="button" id="closeModal">
+                    Cancel
+                </button>
+
+                <button type="submit">
+                    Add task
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal h2 {
+    margin-top: 0;
+}
+
+.modal input,
+.modal textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    font: inherit;
+}
+
+.modal textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal-buttons button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+#closeModal {
+    background: #eee;
+}
+
+.modal-buttons button[type="submit"] {
+    background: #e74c3c;
+    color: white;
+}
+
+
+const openModal = document.querySelector('#openModal');
+const closeModal = document.querySelector('#closeModal');
+const taskModal = document.querySelector('#taskModal');
+const taskForm = document.querySelector('#taskForm');
+
+const taskTitle = document.querySelector('#taskTitle');
+const taskDescription = document.querySelector('#taskDescription');
+const taskDate = document.querySelector('#taskDate');
+const taskTime = document.querySelector('#taskTime');
+
+const noteCard = document.querySelector('.noteCard');
+
+// Open the modal
+addNote.addEventListener('click', function () {
+    taskModal.classList.add('active');
+    taskTitle.focus();
+});
+
+// Close the modal
+closeModal.addEventListener('click', function () {
+    taskModal.classList.remove('active');
+});
+
+// Close when clicking outside the modal
+taskModal.addEventListener('click', function (event) {
+    if (event.target === taskModal) {
+        taskModal.classList.remove('active');
+    }
+});
+
+// Add the task
+taskForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const title = taskTitle.value.trim();
+
+    if (!title) return;
+
+    const task = document.createElement('div');
+    task.classList.add('messageInfo');
+
+    const message = document.createElement('p');
+    message.classList.add('message');
+    message.textContent = title;
+
+    const description = document.createElement('p');
+    description.textContent = taskDescription.value.trim();
+
+    const date = document.createElement('p');
+    date.textContent = taskDate.value
+        ? `Date: ${taskDate.value}`
+        : '';
+
+    const time = document.createElement('p');
+    time.textContent = taskTime.value
+        ? `Time: ${taskTime.value}`
+        : '';
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+
+    checkbox.addEventListener('change', function () {
+        message.style.textDecoration =
+            checkbox.checked ? 'line-through' : 'none';
+    });
+
+    task.append(checkbox, message, description, date, time);
+    noteCard.append(task);
+
+    // Clear the form
+    taskForm.reset();
+
+    // Close the modal
+    taskModal.classList.remove('active');
+});

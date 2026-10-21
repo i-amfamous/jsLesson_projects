@@ -8,6 +8,42 @@
   </head>
   <body>
     <main>
+    <!-- Modal -->
+  <div class="modal-overlay" id="taskModal">
+    <div class="modal">
+
+        <form id="taskForm">
+            <input
+                type="text"
+                id="taskTitle"
+                placeholder="Task name"
+                required
+            >
+
+            <textarea
+                id="taskDescription"
+                placeholder="Description"
+            ></textarea>
+
+            <input type="date" id="taskDate">
+
+            <input type="time" id="taskTime">
+
+            <div class="modal-buttons">
+                <button type="button" id="closeModal">
+                    Cancel
+                </button>
+
+                <button type="submit" id="submitBtn">
+                    Add task
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
       <div class="sidebar">
         <div class="user">
           <span class="profile">
@@ -23,7 +59,7 @@
 
         <div class="action">
             <span class="addNote">
-                <button><img src="img/add-line.svg" alt="Add Note" />Add task</button>
+                <button class="addNote"><img src="img/add-line.svg" alt="Add Note" />Add task</button>
                 <button><img src="img/search-line.svg" alt="Add Note" />Search task</button>
                 <button><img src="img/calendar-event-svgrepo-com.svg" height="30" alt="Add Note" />Today</button>
                 <button><img src="img/calendar-fill.svg" alt="Add Note" />Upcoming</button>
@@ -39,12 +75,7 @@
 
 
             <div class="projectCards">
-                <p><span class="hash">#</span> Project1</p>
-                <p><span class="hash">#</span> Project2</p>
-                <p><span class="hash">#</span> Project2</p>
-                <p><span class="hash">#</span> Project2</p>
-                <p><span class="hash">#</span> Project2</p>
-               
+                <!-- <p><span class="hash">#</span> Project1</p> -->
             </div>
 
       </div>
@@ -60,48 +91,17 @@
 
       <div class="noteCard">
           <h1 class="notHead">My Projects</h1>
-          <div class="messageInfo">
+          <!-- <div class="messageInfo">
              <span>
                  <input class="checkbox" type="checkbox" placeholder="Add a task..." />
               <p class="message">Hello this is my first project</p>
              </span>
               <p class="time">7:00 AM</p>
               <button class="edit">Edit</button>
-          </div>
-          <div class="messageInfo">
-             <span>
-                 <input class="checkbox" type="checkbox" placeholder="Add a task..." />
-              <p class="message">Hello this is my first project</p>
-             </span>
-              <p class="time">7:00 AM</p>
-              <button class="edit">Edit</button>
-          </div>
-          <div class="messageInfo">
-             <span>
-                 <input class="checkbox" type="checkbox" placeholder="Add a task..." />
-              <p class="message">Hello this is my first project</p>
-             </span>
-              <p class="time">7:00 AM</p>
-              <button class="edit">Edit</button>
-          </div>
-          <div class="messageInfo">
-             <span>
-                 <input class="checkbox" type="checkbox" placeholder="Add a task..." />
-              <p class="message">Hello this is my first project</p>
-             </span>
-              <p class="time">7:00 AM</p>
-              <button class="edit">Edit</button>
-          </div>
-          <div class="messageInfo">
-             <span>
-                 <input class="checkbox" type="checkbox" placeholder="Add a task..." />
-              <p class="message">Hello this is my first project</p>
-             </span>
-              <p class="time">7:00 AM</p>
-              <button class="edit">Edit</button>
-          </div>
-        
+          </div> -->
       </div>
     </main>
+
+    <script src="script.js"></script>
   </body>
 </html>
