@@ -216,3 +216,40 @@ a collectionof projects i build during my js lesson
     </script>
   </body>
 </html>
+
+
+ async function getGif() {
+        const inputData = input.value.trim();
+
+        if (!inputData) {
+          message.textContent = "Enter text to search for GIF images";
+          return;
+        }
+
+        message.textContent = "";
+
+        
+
+        try {
+          const response = await fetch(gifUrl);
+
+          if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+          }
+
+          const data = await response.json();
+          show.src = data.data.images.original.url;
+          show.alt = data.data.alt_text || `GIF for ${inputData}`;
+        } catch (error) {
+          console.error(error);
+          message.textContent = "GIF couldn't be loaded. Please try again.";
+        }
+      }
+
+      submitBtn.addEventListener("click", getGif);
+
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          getGif();
+        }
+      });

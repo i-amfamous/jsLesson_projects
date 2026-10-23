@@ -166,46 +166,65 @@
     </main>
 
     <script>
-      const input = document.querySelector(".input");
-      const submitBtn = document.querySelector(".submit");
-      const show = document.querySelector(".show");
-      const message = document.querySelector(".message");
+  const input = document.querySelector(".input");
+  const submitBtn = document.querySelector(".submit");
+  const show = document.querySelector(".show");
+  const message = document.querySelector(".message");
 
-      async function getGif() {
-        const inputData = input.value.trim();
+  async function getGif() {
+    const inputData = input.value.trim();
 
-        if (!inputData) {
-          message.textContent = "Enter text to search for GIF images";
-          return;
-        }
+    // Check whether the user entered anything
+    if (!inputData) {
+      message.textContent = "Enter text to search for GIF images";
+      show.src = "";
+      return;
+    }
 
-        message.textContent = "";
+    message.textContent = "";
+    show.src = "";
 
-        const gifUrl = `https://api.giphy.com/v1/gifs/random?api_key=bfqWjTcXvI7Skvj5UKm8MWcXZDOgXuRt&tag=${encodeURIComponent(inputData)}&rating=g`;
+    // Build the API URL
+    const gifUrl = `https://api.giphy.com/v1/gifs/random?api_key=bfqWjTcXvI7Skvj5UKm8MWcXZDOgXuRt&tag=${encodeURIComponent(inputData)}&rating=g`;
 
-        try {
-          const response = await fetch(gifUrl);
+    try {
+      // Step 1: Ask Giphy for a GIF
+      const response = await fetch(gifUrl);
 
-          if (!response.ok) {
-            throw new Error(`HTTP error: ${response.status}`);
-          }
-
-          const data = await response.json();
-          show.src = data.data.images.original.url;
-          show.alt = data.data.alt_text || `GIF for ${inputData}`;
-        } catch (error) {
-          console.error(error);
-          message.textContent = "GIF couldn't be loaded. Please try again.";
-        }
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
       }
 
-      submitBtn.addEventListener("click", getGif);
+      // Step 2: Convert the response into JavaScript data
+      const data = await response.json();
 
-      input.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-          getGif();
-        }
-      });
+      // Step 3: Check whether a GIF was returned
+      const gif = data.data?.images?.original?.url;
+
+      if (!gif) {
+        throw new Error("No GIF was found");
+      }
+
+      // Step 4: Display the GIF
+      show.src = gif;
+      show.alt = data.data.alt_text || `GIF for ${inputData}`;
+
+    } catch (error) {
+      console.error(error);
+      message.textContent = "GIF couldn't be loaded. Please try again.";
+    }
+  }
+
+  // Run when the user clicks Search
+  submitBtn.addEventListener("click", getGif);
+
+  // Also run when the user presses Enter in the input
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      getGif();
+    }
+  });
+ 
     </script>
   </body>
 </html>
