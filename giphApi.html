@@ -66,7 +66,9 @@
         background: #fff;
         color: #1d1d1f;
         font: inherit;
-        transition: border-color 160ms ease, box-shadow 160ms ease;
+        transition:
+          border-color 160ms ease,
+          box-shadow 160ms ease;
       }
 
       .input::placeholder {
@@ -87,7 +89,9 @@
         font: inherit;
         font-weight: 600;
         cursor: pointer;
-        transition: background 160ms ease, transform 160ms ease;
+        transition:
+          background 160ms ease,
+          transform 160ms ease;
       }
 
       .submit:hover {
@@ -167,45 +171,41 @@
       const show = document.querySelector(".show");
       const message = document.querySelector(".message");
 
-        function findGiph(){
-          const inputData = input.value.trim();
+      async function getGif() {
+        const inputData = input.value.trim();
 
-        if (inputData === "") {
+        if (!inputData) {
           message.textContent = "Enter text to search for GIF images";
           return;
         }
 
         message.textContent = "";
-        input.value = "";
 
-        const gifUrl = `https://api.giphy.com/v1/gifs/random?api_key=bfqWjTcXvI7Skvj5UKm8MWcXZDOgXuRt&tag=${inputData}&rating=g`;
-        fetch(gifUrl)
-          .then((response) => {
-            if (!response.ok) {
-              throw new error(`HTTP error: ${response.status}`);
-            }
-            return response.json();
-          })
+        const gifUrl = `https://api.giphy.com/v1/gifs/random?api_key=bfqWjTcXvI7Skvj5UKm8MWcXZDOgXuRt&tag=${encodeURIComponent(inputData)}&rating=g`;
 
-          .then((response) => {
-            if (!response) {
-              message.textContent = "No GIF found. Try another search";
-              return;
-            }
-            show.src = response.data.images.original.url;
-            show.alt = response.data.images.original.alt;
-          });
+        try {
+          const response = await fetch(gifUrl);
 
-        console.log(gifUrl);
-      };
-      
-            submitBtn.addEventListener("click", findGiph)
+          if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+          }
 
-            input.addEventListener('keydown', (e)=>{
-              if(e.key == "Enter"){
-                findGiph()
-              }
-            })
+          const data = await response.json();
+          show.src = data.data.images.original.url;
+          show.alt = data.data.alt_text || `GIF for ${inputData}`;
+        } catch (error) {
+          console.error(error);
+          message.textContent = "GIF couldn't be loaded. Please try again.";
+        }
+      }
+
+      submitBtn.addEventListener("click", getGif);
+
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          getGif();
+        }
+      });
     </script>
   </body>
 </html>
