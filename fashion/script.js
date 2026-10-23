@@ -11,6 +11,7 @@ const newFeaturedProducts = featuredProducts.map((product) => {
   };
 });
 
+
 const featuredProductsContainer = document.querySelector(".products");
 
 newFeaturedProducts.forEach((product) => {

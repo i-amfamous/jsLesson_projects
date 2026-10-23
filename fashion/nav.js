@@ -29,3 +29,25 @@ document.addEventListener("keydown", (event) => {
 window.matchMedia("(min-width: 641px)").addEventListener("change", () => {
   setMenuOpen(false);
 });
+
+(() => {
+  const CART_STORAGE_KEY = "culture-cart";
+
+  function updateCartCount() {
+    const badge = document.querySelector(".cartCount");
+    if (!badge) return;
+
+    const cart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || "[]");
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+
+    badge.textContent = count;
+  }
+
+  updateCartCount();
+
+  // Refresh if another browser tab changes the saved cart.
+  window.addEventListener("storage", updateCartCount);
+
+  // Refresh when this page changes the cart.
+  window.addEventListener("cart-updated", updateCartCount);
+})();

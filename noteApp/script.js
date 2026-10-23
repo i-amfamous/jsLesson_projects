@@ -6,6 +6,7 @@ const dateInput = document.getElementById("taskDate");
 const timeInput = document.getElementById("taskTime");
 const closeBtn = document.getElementById("closeModal");
 const submitBtn = document.getElementById("submitBtn");
+const taskDate = document.getElementById("taskDate");
 
 addNote.addEventListener("click", () => {
   taskModal.classList.add("active");
@@ -58,16 +59,12 @@ submitBtn.addEventListener("click", (e) => {
     messageInfo.append(spanContainer, timeElement, editBtn);
     noteCard.append(messageInfo);
 
-    taskModal.classList.remove("active");
-    taskTitle.value = "";
-    description.value = "";
-
     const projectCards = document.querySelector(".projectCards");
 
     const projectRow = document.createElement("p");
 
     const title = taskTitle.value.trim();
-    const sideTitle = document.createElement('p')
+    const sideTitle = document.createElement("p");
     sideTitle.textContent = title;
 
     const hash = document.createElement("span");
@@ -76,5 +73,13 @@ submitBtn.addEventListener("click", (e) => {
 
     projectRow.append(hash, sideTitle);
     projectCards.append(projectRow);
+
+    taskModal.classList.remove("active");
+    taskTitle.value = "";
+    description.value = "";
+    dateInput.value = "";
+    timeInput.value = "";
+  } else{
+    alert ("Fill in all the fields")
   }
 });

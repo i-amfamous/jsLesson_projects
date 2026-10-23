@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products | CULTURE / 001</title>
+    <link rel="icon" href="img/logo.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="products.css" />
+    <link rel="stylesheet" href="base.css" />
+    <title>CULTURE / 001</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <div class="header-logo">
+          <a href="index.html"
+            ><img src="img/logo.png" alt="Logo" />CULTURE / 001</a
+          >
+        </div>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="site-navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="header-nav" id="site-navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="about.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header-cart">
+          <a href="cart.html"
+            ><img src="img/cart.svg" alt="Cart" height="30"
+          /></a>
+          <p class="cartCount">0</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="hero">
+        <h1>Shop with Us</h1>
+      </div>
+
+      <div class="products">
+        <h2>Shop Now!</h2>
+        <div class="productsContainer">
+          <!-- Products goes in here from products.js -->
+        </div>
+      </div>
+    </main>
+    <script src="products.js"></script>
+    <script src="nav.js"></script>
+  </body>
+</html>
