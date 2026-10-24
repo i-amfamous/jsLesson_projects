@@ -18,7 +18,7 @@ const locationNAme = document.querySelector(".location");
 const temperature = document.querySelector(".temperature");
 // const tempCondition = document.querySelector('.condition') repeated
 const stat_item = document.querySelector(".stat-item");
-const weatherSummary = document.querySelector('.weather-summary')
+const weatherSummary = document.querySelector(".weather-summary");
 
 /* =============================================
                 RIGHT CONTAINER CARDS
@@ -26,9 +26,36 @@ const weatherSummary = document.querySelector('.weather-summary')
 const humidityNumber = document.querySelector(".humidityNumber");
 const windNumber = document.querySelector(".windNumber");
 const uvNumber = document.querySelector(".uvNumber");
+const changeDegree = document.querySelector(".degree");
+
+let currentTempFahrenheit;
+let isCelsius = false;
+
+function updateTemperatureDisplay() {
+  if (!Number.isFinite(currentTempFahrenheit)) {
+    return;
+  }
+
+  const displayedTemp = isCelsius
+    ? ((currentTempFahrenheit - 32) * 5) / 9
+    : currentTempFahrenheit;
+  const unit = isCelsius ? "C" : "F";
+
+  temperature.textContent = `${displayedTemp.toFixed(1)}°${unit}`;
+  timeValue.forEach((cardTemperature) => {
+    cardTemperature.textContent = `${displayedTemp.toFixed(1)}°${unit}`;
+  });
+}
+
+changeDegree.addEventListener("click", () => {
+  isCelsius = !isCelsius;
+  changeDegree.textContent = isCelsius ? "Fahrenheit" : "Celsius";
+  updateTemperatureDisplay();
+});
 
 async function getData() {
   const input = userInput.value.trim();
+  userInput.value = "";
   const weather_KEY = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${input}?unitGroup=us&key=XQ6YLCGETA3TAVWPWFN3QBBME`;
 
   if (!input) {
@@ -51,12 +78,15 @@ async function getData() {
     condition.textContent = data.currentConditions.conditions;
     humidityNumber.textContent = `${data.currentConditions.humidity}%`;
     windNumber.textContent = `${data.currentConditions.windspeed}km/h`;
-    temperature.textContent = `${data.currentConditions.temp}°C`;
 
-/* ==================================================
-    CHANGED THE SUMMARYCARD BG BASED ON THE WEATHER
- ====================================================*/
-    const currentCondition = data.currentConditions.conditions || data.description || "Clear";
+    currentTempFahrenheit = Number(data.currentConditions.temp);
+    updateTemperatureDisplay();
+
+    /* ==================================================
+     CHANGED THE SUMMARYCARD BG BASED ON THE WEATHER
+    ====================================================*/
+    const currentCondition =
+      data.currentConditions.conditions || data.description || "Clear";
     const weatherBackgrounds = {
       Clear: "./img/sunny.jpeg",
       Sunny: "./img/sunny.jpeg",
@@ -73,12 +103,13 @@ async function getData() {
       Fog: "./img/cloudy.jpeg",
     };
 
-    const backgroundImage = weatherBackgrounds[currentCondition] || "./img/sunny.jpeg";
+    const backgroundImage =
+      weatherBackgrounds[currentCondition] || "./img/sunny.jpeg";
     weatherSummary.style.backgroundImage = `url('${backgroundImage}')`;
 
-/* ==================================================
-            SUMMARY CARD CPONDITIONS
- ====================================================*/
+    /* ==================================================
+                SUMMARY CARD CPONDITIONS
+    ====================================================*/
     condition.forEach((condition) => {
       condition.textContent = data.currentConditions.conditions;
     });
@@ -107,22 +138,17 @@ async function getData() {
       uvNumber.textContent = "Extreme";
     }
 
-/* =============================================
-               TIME  DISPLAY
- =============================================*/
+    /* =============================================
+                 TIME  DISPLAY
+    =============================================*/
     const apiTime = data.currentConditions.datetime;
-    getTime.forEach((time)=>{
+    getTime.forEach((time) => {
+      getTime.textContent = apiTime;
+    });
 
-        getTime.textContent  = apiTime;
-    })
-    
-/* =============================================
+    /* =============================================
                TIME GEGREE DISPLAY
- =============================================*/
-    timeValue.forEach((timeValue)=>{
-        timeValue.textContent = `${data.currentConditions.temp}°`;
-    })
-
+    =============================================*/
     console.log(data);
   } catch (error) {
     temperature.textContent = "Unavailable";
