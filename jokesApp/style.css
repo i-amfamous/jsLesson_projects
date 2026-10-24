@@ -6,10 +6,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --ink: #182230;
+  --ink: #050505;
   --muted: #000000;
   --accent: #000000;
-  --accent-dark: #5230a5;
+  --accent-dark: #080808;
 }
 
 * {

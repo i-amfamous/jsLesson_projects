@@ -53,6 +53,9 @@ changeDegree.addEventListener("click", () => {
   updateTemperatureDisplay();
 });
 
+/* =============================================
+        FETCHING DATA FROM THE API
+ =============================================*/
 async function getData() {
   const input = userInput.value.trim();
   userInput.value = "";
@@ -141,10 +144,24 @@ async function getData() {
     /* =============================================
                  TIME  DISPLAY
     =============================================*/
-    const apiTime = data.currentConditions.datetime;
-    getTime.forEach((time) => {
-      getTime.textContent = apiTime;
-    });
+  const hourlyData = data.days[0].hours;
+const currentHour = data.currentConditions.datetime.slice(0, 2);
+
+const startIndex = hourlyData.findIndex(
+  (hour) => hour.datetime.slice(0, 2) === currentHour
+);
+
+timeValue.forEach((card, index) => {
+  const hourData = hourlyData[startIndex + index];
+
+  if (!hourData) return;
+
+  card.textContent = `${Math.round(hourData.temp)}°F`;
+  getTime[index].textContent = index === 0 ? "Now" : hourData.datetime;
+  condition[index].textContent = hourData.conditions;
+});
+
+// The only code i dont understand how it works only God Know how it worked ;)
 
     /* =============================================
                TIME GEGREE DISPLAY
@@ -163,3 +180,6 @@ userInput.addEventListener("keypress", (e) => {
     getData();
   }
 });
+
+userInput.value = "Accra"; // Choose your starting city
+getData();                   // Fetch its weather when the page loads
