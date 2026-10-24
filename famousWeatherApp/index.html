@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechX WeatherApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="weather-app">
+      <header class="topbar">
+        <div class="brand-block">
+          <span class="greeting">Welcome</span>
+          <h1>Developer</h1>
+        </div>
+
+        <label class="search-box" aria-label="Search location">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input type="search" placeholder="Search city" class="inputField" />
+        </label>
+      </header>
+
+      <section class="content-panel">
+        <div class="forecast-panel">
+          <div class="forecast-header">
+            <span class="eyebrow">Weather Forecast</span>
+            <h2 class="forecast-name">Storm with Heavy Rain</h2>
+            <p class="forecast-description">
+              Expect a wet afternoon with heavy downpours, strong winds, and cool
+              temperatures across the city. Keep an umbrella handy and plan indoor
+              activities for the next few hours.
+            </p>
+          </div>
+
+          <div class="hourly-forecast" aria-label="Hourly weather forecast">
+            <article class="hour-card active">
+              <span class="time">Now</span>
+              <strong class="value">11°</strong>
+              <span class="condition">Rain</span>
+            </article>
+            <article class="hour-card">
+              <span class="time">12 PM</span>
+              <strong class="value">12°</strong>
+              <span class="condition">Rain</span>
+            </article>
+            <article class="hour-card">
+              <span class="time">1 PM</span>
+              <strong class="value">13°</strong>
+              <span class="condition">Rain</span>
+            </article>
+            <article class="hour-card">
+              <span class="time">2 PM</span>
+              <strong class="value">14°</strong>
+              <span class="condition">Wind</span>
+            </article>
+            <article class="hour-card">
+              <span class="time">3 PM</span>
+              <strong class="value">15°</strong>
+              <span class="condition">Cloudy</span>
+            </article>
+            <article class="hour-card">
+              <span class="time">4 PM</span>
+              <strong class="value">16°</strong>
+              <span class="condition">Cloudy</span>
+            </article>
+          </div>
+        </div>
+
+        <aside class="weather-summary" aria-label="Current weather details">
+          <div class="location-row">
+            <img
+              src="img/map-pin-2-fill.svg"
+              alt="Location pin icon"
+              class="pin"
+            />
+            <p class="location">Central Jakarta</p>
+          </div>
+
+          <div class="temp-block">
+            <h1 class="temperature">10°C</h1>
+            <p class="condition">Light rain</p>
+          </div>
+
+          <div class="weather-stats">
+            <div class="stat-item">
+              <span class="humidity">Humidity</span>
+              <strong class="humidityNumber">82%</strong>
+            </div>
+            <div class="stat-item">
+              <span class="wind">Wind</span>
+              <strong class="windNumber">18 km/h</strong>
+            </div>
+            <div class="stat-item">
+              <span class="uv">UV</span>
+              <strong class="uvNumber">Low</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>
