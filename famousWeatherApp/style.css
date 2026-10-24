@@ -55,13 +55,14 @@ body {
   font-size: 0.7rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-secondary);
+  color: white;
 }
 
 .brand-block h1 {
   margin: 0;
   font-size: clamp(1.7rem, 2vw, 2.4rem);
   font-weight: 800;
+  color: white;
 }
 
 .search-box {
@@ -250,6 +251,12 @@ body {
   font-size: clamp(3.2rem, 6vw, 5rem);
   line-height: 1;
   letter-spacing: -0.06em;
+}
+
+.temperature.is-status {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  letter-spacing: normal;
+  overflow-wrap: anywhere;
 }
 
 .condition:first-of-type {

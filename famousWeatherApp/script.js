@@ -90,25 +90,28 @@ async function getData() {
     ====================================================*/
     const currentCondition =
       data.currentConditions.conditions || data.description || "Clear";
-    const weatherBackgrounds = {
-      Clear: "./img/sunny.jpeg",
-      Sunny: "./img/sunny.jpeg",
-      "Partly Cloudy": "./img/cloudy.jpeg",
-      "Partially Cloudy": "./img/cloudy.jpeg",
-      Cloudy: "./img/cloudy.jpeg",
-      Rain: "./img/rainy.jpeg",
-      "Light Rain": "./img/rainny.jpeg",
-      "Light rain": "./img/rainny.jpeg",
-      "Heavy Rain": "./img/rainny2.jpeg",
-      Snow: "./img/snowy.jpeg",
-      Thunderstorm: "./img/storm.jpeg",
-      Mist: "./img/cloudy.jpeg",
-      Fog: "./img/cloudy.jpeg",
-    };
+    const conditionText = currentCondition.toLowerCase();
+    let backgroundImage = "./img/sunny.jpeg";
 
-    const backgroundImage =
-      weatherBackgrounds[currentCondition] || "./img/sunny.jpeg";
+    if (conditionText.includes("thunder") || conditionText.includes("storm")) {
+      backgroundImage = "./img/storm.jpeg";
+    } else if (conditionText.includes("heavy rain")) {
+      backgroundImage = "./img/rainny2.jpeg";
+    } else if (conditionText.includes("rain")) {
+      backgroundImage = "./img/rainny.jpeg";
+    } else if (
+      conditionText.includes("cloud") ||
+      conditionText.includes("overcast") ||
+      conditionText.includes("fog") ||
+      conditionText.includes("mist")
+    ) {
+      backgroundImage = "./img/cloudy.jpeg";
+    }
+
     weatherSummary.style.backgroundImage = `url('${backgroundImage}')`;
+    document.body.style.backgroundImage =
+  `linear-gradient(135deg, rgba(6, 6, 6, 0.55), rgba(227, 242, 255, 0.65)), ` +
+  `url('${backgroundImage}')`;
 
     /* ==================================================
                 SUMMARY CARD CPONDITIONS
@@ -144,22 +147,36 @@ async function getData() {
     /* =============================================
                  TIME  DISPLAY
     =============================================*/
-  const hourlyData = data.days[0].hours;
-const currentHour = data.currentConditions.datetime.slice(0, 2);
+    const hourlyData = data.days?.[0]?.hours ?? [];
+    const currentHour = data.currentConditions.datetime?.slice(0, 2);
+    const startIndex = hourlyData.findIndex(
+      (hour) => hour.datetime?.slice(0, 2) === currentHour
+    );
 
-const startIndex = hourlyData.findIndex(
-  (hour) => hour.datetime.slice(0, 2) === currentHour
-);
+    timeValue.forEach((card, index) => {
+      const hourData =
+        startIndex < 0 ? undefined : hourlyData[startIndex + index];
+      const time = getTime[index];
+      const cardCondition = condition[index];
 
-timeValue.forEach((card, index) => {
-  const hourData = hourlyData[startIndex + index];
+      if (!hourData) {
+        card.textContent = "N/A";
+        time.textContent = "N/A";
+        cardCondition.textContent = "N/A";
+        return;
+      }
 
-  if (!hourData) return;
-
-  card.textContent = `${Math.round(hourData.temp)}°F`;
-  getTime[index].textContent = index === 0 ? "Now" : hourData.datetime;
-  condition[index].textContent = hourData.conditions;
-});
+      card.textContent =
+        Number.isFinite(Number(hourData.temp)) && hourData.temp != null
+          ? `${Math.round(hourData.temp)}°F`
+          : "N/A";
+      time.textContent = hourData.datetime
+        ? index === 0
+          ? "Now"
+          : hourData.datetime
+        : "N/A";
+      cardCondition.textContent = hourData.conditions || "N/A";
+    });
 
 // The only code i dont understand how it works only God Know how it worked ;)
 
@@ -181,5 +198,8 @@ userInput.addEventListener("keypress", (e) => {
   }
 });
 
+/* =============================================
+         DEFAULT LOCATION ON START
+ =============================================*/
 userInput.value = "Accra"; // Choose your starting city
 getData();                   // Fetch its weather when the page loads
