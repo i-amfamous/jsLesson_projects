@@ -11,7 +11,6 @@ async function showProducts() {
     if (!response.ok) {
       throw new Error(`Could not load products: ${response.status}`);
     }
-
     const products = await response.json();
     products.forEach((product) => {
       const productCard = document.createElement("div");

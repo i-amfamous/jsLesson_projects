@@ -120,27 +120,18 @@ async function getData() {
       condition.textContent = data.currentConditions.conditions;
     });
 
-    if (
-      data.currentConditions.uvindex > 0 &&
-      data.currentConditions.uvindex <= 2
-    ) {
+    const uvIndex = Number(data.currentConditions.uvindex);
+    if (!Number.isFinite(uvIndex)) {
+      uvNumber.textContent = "N/A";
+    } else if (uvIndex <= 2) {
       uvNumber.textContent = "Low";
-    } else if (
-      data.currentConditions.uvindex > 3 &&
-      data.currentConditions.uvindex <= 6
-    ) {
+    } else if (uvIndex <= 5) {
       uvNumber.textContent = "Moderate";
-    } else if (
-      data.currentConditions.uvindex > 6 &&
-      data.currentConditions.uvindex <= 7
-    ) {
+    } else if (uvIndex <= 7) {
       uvNumber.textContent = "High";
-    } else if (
-      data.currentConditions.uvindex > 8 &&
-      data.currentConditions.uvindex <= 10
-    ) {
+    } else if (uvIndex <= 10) {
       uvNumber.textContent = "Very high";
-    } else if (data.currentConditions.uvindex > 10) {
+    } else {
       uvNumber.textContent = "Extreme";
     }
 

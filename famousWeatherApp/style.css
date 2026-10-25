@@ -139,7 +139,7 @@ body {
 
 .hourly-forecast {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 104px), 1fr));
   gap: clamp(8px, 1.5vw, 14px);
 }
 
@@ -173,9 +173,12 @@ body {
 }
 
 .value {
-  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  max-width: 100%;
+  font-size: clamp(1.15rem, 2.2vw, 1.75rem);
   line-height: 1;
   font-weight: 700;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .weather-summary {
