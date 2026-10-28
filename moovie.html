@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechX Movies</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --card: #1a1a24;
+    --border: #2a2a38;
+    --text: #e8e8f0;
+    --muted: #8888a0;
+    --accent: #6c5ce7;
+    --accent2: #a29bfe;
+    --danger: #ff6b6b;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    min-height: 100vh;
+    line-height: 1.45;
+  }
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 1.25rem;
+    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  }
+  .logo {
+    font-weight: 800; font-size: 1.25rem; letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .logo span { font-weight: 500; opacity: 0.85; }
+  .search-wrap { flex: 1; min-width: 180px; max-width: 420px; position: relative; }
+  .search-wrap input {
+    width: 100%; padding: 0.6rem 1rem 0.6rem 2.4rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 999px; color: var(--text); font-size: 0.95rem;
+  }
+  .search-wrap input:focus { outline: none; border-color: var(--accent); }
+  .search-wrap svg {
+    position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%);
+    width: 16px; height: 16px; opacity: 0.5;
+  }
+  .key-box {
+    display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem;
+  }
+  .key-box input {
+    width: 140px; padding: 0.4rem 0.6rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; color: var(--text); font-size: 0.8rem;
+  }
+  nav { display: flex; gap: 0.5rem; }
+  nav button {
+    background: transparent; border: 1px solid transparent;
+    color: var(--muted); padding: 0.4rem 0.85rem; border-radius: 999px;
+    cursor: pointer; font-size: 0.85rem; font-weight: 500;
+  }
+  nav button.active, nav button:hover {
+    color: var(--text); background: var(--card); border-color: var(--border);
+  }
+  main { padding: 1.25rem; max-width: 1400px; margin: 0 auto; }
+  .section-title {
+    font-size: 1.1rem; font-weight: 600; margin: 0 0 1rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  .card {
+    background: var(--card); border-radius: var(--radius); overflow: hidden;
+    cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+    border: 1px solid transparent;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+    border-color: var(--border);
+  }
+  .poster {
+    aspect-ratio: 2/3; background: var(--surface);
+    background-size: cover; background-position: center;
+    position: relative;
+  }
+  .poster .rating {
+    position: absolute; top: 8px; right: 8px;
+    background: rgba(0,0,0,0.75); color: #ffd700;
+    font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.45rem;
+    border-radius: 6px;
+  }
+  .info { padding: 0.65rem 0.7rem 0.85rem; }
+  .info h3 {
+    font-size: 0.88rem; font-weight: 600; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  .info p { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
+  .empty, .loading {
+    text-align: center; padding: 3rem 1rem; color: var(--muted);
+  }
+  /* modal */
+  .modal {
+    display: none; position: fixed; inset: 0; z-index: 100;
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; padding: 1rem;
+  }
+  .modal.open { display: flex; }
+  .modal-inner {
+    background: var(--surface); border-radius: 16px;
+    width: min(960px, 100%); max-height: 92vh; overflow: auto;
+    border: 1px solid var(--border);
+  }
+  .player-wrap {
+    position: relative; width: 100%; aspect-ratio: 16/9;
+    background: #000;
+  }
+  .player-wrap iframe {
+    position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+  }
+  .modal-body { padding: 1.25rem; }
+  .modal-body h2 { font-size: 1.35rem; margin-bottom: 0.35rem; }
+  .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.75rem; }
+  .overview { font-size: 0.95rem; color: #ccc; margin-bottom: 1rem; }
+  .close-btn {
+    position: absolute; top: 10px; right: 10px; z-index: 5;
+    background: rgba(0,0,0,0.6); border: none; color: #fff;
+    width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+    font-size: 1.2rem; line-height: 1;
+  }
+  .source-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+  .source-row button {
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--text); padding: 0.4rem 0.8rem; border-radius: 8px;
+    cursor: pointer; font-size: 0.85rem;
+  }
+  .source-row button.active { background: var(--accent); border-color: var(--accent); }
+  footer {
+    text-align: center; padding: 2rem 1rem; color: var(--muted); font-size: 0.8rem;
+  }
+  footer a { color: var(--accent2); }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">TechX <span>Movies</span></div>
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="search" id="search" placeholder="Search movies…" autocomplete="off">
+  </div>
+  <nav>
+    <button class="active" data-tab="trending">Trending</button>
+    <button data-tab="popular">Popular</button>
+    <button data-tab="top">Top Rated</button>
+  </nav>
+  <div class="key-box">
+    <span style="color:var(--muted)">TMDB key</span>
+    <input type="password" id="apiKey" placeholder="paste free key" title="Get free key at themoviedb.org/settings/api">
+  </div>
+</header>
+
+<main>
+  <div class="section-title">
+    <span id="sectionLabel">Trending</span>
+  </div>
+  <div id="grid" class="grid">
+    <div class="loading">Paste your free TMDB API key above, then browse.</div>
+  </div>
+</main>
+
+<div class="modal" id="modal">
+  <div class="modal-inner">
+    <div class="player-wrap">
+      <button class="close-btn" id="closeModal">×</button>
+      <iframe id="player" allowfullscreen allow="autoplay; fullscreen"></iframe>
+    </div>
+    <div class="modal-body">
+      <h2 id="mTitle"></h2>
+      <div class="meta" id="mMeta"></div>
+      <p class="overview" id="mOverview"></p>
+      <div class="source-row">
+        <button class="active" data-src="vidsrc">VidSrc</button>
+        <button data-src="moviesapi">MoviesAPI</button>
+        <button data-src="superembed">SuperEmbed</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Data by <a href="https://www.themoviedb.org/" target="_blank" rel="noopener">TMDB</a>.
+  Streams via free public embed providers. Get a free TMDB key at themoviedb.org → Settings → API.
+</footer>
+
+<script>
+const IMG = 'https://image.tmdb.org/t/p/w500';
+const grid = document.getElementById('grid');
+const modal = document.getElementById('modal');
+const player = document.getElementById('player');
+let currentMovie = null;
+let currentSource = 'vidsrc';
+let activeTab = 'trending';
+
+const keyInput = document.getElementById('apiKey');
+keyInput.value = localStorage.getItem('tmdb_key') || '';
+keyInput.addEventListener('change', () => {
+  localStorage.setItem('tmdb_key', keyInput.value.trim());
+  loadTab(activeTab);
+});
+
+function apiKey() {
+  return keyInput.value.trim();
+}
+
+async function tmdb(path, params = {}) {
+  const key = apiKey();
+  if (!key) throw new Error('Add your free TMDB API key first');
+  const q = new URLSearchParams({ api_key: key, ...params });
+  const res = await fetch(`https://api.themoviedb.org/3${path}?${q}`);
+  if (!res.ok) throw new Error('TMDB ' + res.status);
+  return res.json();
+}
+
+function cardHTML(m) {
+  const poster = m.poster_path ? IMG + m.poster_path : '';
+  const year = (m.release_date || '').slice(0, 4);
+  const rating = m.vote_average ? m.vote_average.toFixed(1) : '–';
+  return `
+    <article class="card" data-id="${m.id}">
+      <div class="poster" style="background-image:url('${poster}')">
+        <span class="rating">★ ${rating}</span>
+      </div>
+      <div class="info">
+        <h3>${m.title || 'Untitled'}</h3>
+        <p>${year}</p>
+      </div>
+    </article>`;
+}
+
+function render(list) {
+  if (!list.length) {
+    grid.innerHTML = '<div class="empty">No results</div>';
+    return;
+  }
+  grid.innerHTML = list.map(cardHTML).join('');
+  grid.querySelectorAll('.card').forEach(el => {
+    el.onclick = () => openMovie(+el.dataset.id);
+  });
+}
+
+async function loadTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('nav button').forEach(b => {
+    b.classList.toggle('active', b.dataset.tab === tab);
+  });
+  const labels = { trending: 'Trending', popular: 'Popular', top: 'Top Rated' };
+  document.getElementById('sectionLabel').textContent = labels[tab] || 'Results';
+  grid.innerHTML = '<div class="loading">Loading…</div>';
+  try {
+    let data;
+    if (tab === 'trending') data = await tmdb('/trending/movie/week');
+    else if (tab === 'popular') data = await tmdb('/movie/popular');
+    else if (tab === 'top') data = await tmdb('/movie/top_rated');
+    render(data.results || []);
+  } catch (e) {
+    grid.innerHTML = `<div class="empty">${e.message}</div>`;
+  }
+}
+
+document.querySelectorAll('nav button').forEach(b => {
+  b.onclick = () => loadTab(b.dataset.tab);
+});
+
+let searchTimer;
+document.getElementById('search').addEventListener('input', e => {
+  clearTimeout(searchTimer);
+  const q = e.target.value.trim();
+  if (!q) { loadTab(activeTab); return; }
+  searchTimer = setTimeout(async () => {
+    document.getElementById('sectionLabel').textContent = `Search: ${q}`;
+    grid.innerHTML = '<div class="loading">Searching…</div>';
+    try {
+      const data = await tmdb('/search/movie', { query: q });
+      render(data.results || []);
+    } catch (err) {
+      grid.innerHTML = `<div class="empty">${err.message}</div>`;
+    }
+  }, 350);
+});
+
+function embedUrl(id, source) {
+  if (source === 'vidsrc') return `https://embed.vidsrc.pk/movie/${id}`;
+  if (source === 'moviesapi') return `https://moviesapi.to/movie/${id}`;
+  if (source === 'superembed') return `https://multiembed.mov/?video_id=${id}&tmdb=1`;
+  return `https://embed.vidsrc.pk/movie/${id}`;
+}
+
+async function openMovie(id) {
+  try {
+    const m = await tmdb(`/movie/${id}`);
+    currentMovie = m;
+    document.getElementById('mTitle').textContent = m.title;
+    document.getElementById('mMeta').textContent =
+      `${(m.release_date || '').slice(0, 4)} · ${m.runtime || '?'} min · ★ ${m.vote_average?.toFixed(1) || '–'}`;
+    document.getElementById('mOverview').textContent = m.overview || '';
+    player.src = embedUrl(m.id, currentSource);
+    modal.classList.add('open');
+  } catch (e) {
+    alert(e.message);
+  }
+}
+
+document.querySelectorAll('.source-row button').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.source-row button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentSource = btn.dataset.src;
+    if (currentMovie) player.src = embedUrl(currentMovie.id, currentSource);
+  };
+});
+
+document.getElementById('closeModal').onclick = () => {
+  modal.classList.remove('open');
+  player.src = '';
+};
+modal.addEventListener('click', e => {
+  if (e.target === modal) {
+    modal.classList.remove('open');
+    player.src = '';
+  }
+});
+
+if (apiKey()) loadTab('trending');
+else grid.innerHTML = '<div class="empty">Paste your free TMDB API key (themoviedb.org → Settings → API) then choose a tab.</div>';
+</script>
+</body>
+</html>
