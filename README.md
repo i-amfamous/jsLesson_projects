@@ -1,255 +1,115 @@
-# jsLesson_projects
-a collectionof projects i build during my js lesson
+# JavaScript Projects Collection
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GIF Search</title>
-    <style>
-      :root {
-        color-scheme: light;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        color: #1d1d1f;
-        background: #f5f5f7;
-      }
+This repository is a collection of small front-end, back-end, and React learning projects built while exploring JavaScript, DOM manipulation, APIs, UI design, and full-stack patterns.
 
-      * {
-        box-sizing: border-box;
-      }
+The projects range from simple static web apps to mini product pages, weather apps, games, API experiments, and React exercises. It is primarily a learning portfolio and practice workspace.
 
-      body {
-        min-height: 100vh;
-        margin: 0;
-        display: grid;
-        place-items: center;
-        padding: 32px 18px;
-        background:
-          radial-gradient(ellipse at 50% 0%, #ffffff 0, transparent 55%),
-          #f5f5f7;
-      }
+## Project Overview
 
-      .search-card {
-        width: min(100%, 560px);
-        padding: clamp(28px, 6vw, 48px);
-        border: 1px solid rgb(0 0 0 / 5%);
-        border-radius: 28px;
-        background: rgb(255 255 255 / 88%);
-        box-shadow: 0 24px 70px rgb(29 29 31 / 10%);
-        text-align: center;
-      }
+### Front-end and UI practice
+- `calculator/` – A basic calculator app.
+- `calculatorTry/` – A second calculator variation to practice UI logic and interactions.
+- `cart/` – Shopping cart interface example.
+- `diceGame/` – A simple dice game built with JavaScript.
+- `expenseTracker/` – Budget and expense tracking app.
+- `famousWeatherApp/` – A weather app focused on styling and UI structure.
+- `fashion/` – A storefront mockup with product listings and shopping cart behavior.
+- `jokes_Generator/` – Random joke generator using JavaScript.
+- `noteApp/` – A note-taking app for learning local data handling and layout design.
+- `productCard/` – Product card component design and layout practice.
+- `quoteGenerator/` – Quote generation app.
+- `todoLessonTest/` – Practice project for todo list interactions.
+- `weatherApp/` – Another weather application with a different implementation style.
 
-      h1 {
-        margin: 0;
-        font-size: clamp(2rem, 7vw, 3rem);
-        letter-spacing: -0.055em;
-        line-height: 1.08;
-      }
+### API and data experiments
+- `APIS.html` – General HTML page for experimenting with APIs.
+- `giphApi.html` – GIF search or API demo.
+- `moovie.html` – Movie-related API practice.
 
-      .intro {
-        margin: 14px 0 28px;
-        color: #6e6e73;
-        font-size: 1rem;
-        line-height: 1.5;
-      }
+### Back-end / data-driven app
+- `backend/` – Express-based API project with product, cart, order, and delivery option data.
 
-      .search-form {
-        display: flex;
-        gap: 10px;
-      }
+### React learning projects
+- `reactJourney/chatBot/` – Chatbot interface built with React.
+- `reactJourney/login/` – Login form or auth UI learning project.
+- `reactJourney/market/` – Marketplace-style React app.
+- `reactJourney/ecommerceProject/` – Small e-commerce app built in React.
 
-      .input {
-        min-width: 0;
-        flex: 1;
-        padding: 14px 16px;
-        border: 1px solid #d2d2d7;
-        border-radius: 14px;
-        outline: none;
-        background: #fff;
-        color: #1d1d1f;
-        font: inherit;
-        transition:
-          border-color 160ms ease,
-          box-shadow 160ms ease;
-      }
+### Testing and learning exercises
+- `jestTesting/` – JavaScript testing practice using Jest.
 
-      .input::placeholder {
-        color: #86868b;
-      }
+## Getting Started
 
-      .input:focus {
-        border-color: #0071e3;
-        box-shadow: 0 0 0 4px rgb(0 113 227 / 16%);
-      }
+### Static HTML/CSS/JS projects
+Most of the front-end projects are simple static web apps. You can open the relevant HTML file directly in a browser, or serve the folder locally.
 
-      .submit {
-        padding: 0 20px;
-        border: 0;
-        border-radius: 14px;
-        background: #0071e3;
-        color: white;
-        font: inherit;
-        font-weight: 600;
-        cursor: pointer;
-        transition:
-          background 160ms ease,
-          transform 160ms ease;
-      }
+Example:
 
-      .submit:hover {
-        background: #0077ed;
-      }
+```bash
+cd /path/to/project
+python3 -m http.server 8000
+```
 
-      .submit:active {
-        transform: scale(0.97);
-      }
+Then open:
 
-      .submit:focus-visible {
-        outline: 3px solid rgb(0 113 227 / 35%);
-        outline-offset: 3px;
-      }
+```text
+http://localhost:8000
+```
 
-      .message {
-        min-height: 1.5em;
-        margin: 14px 0 0;
-        color: #d70015;
-        font-size: 0.9rem;
-      }
+### Back-end project
+The backend project uses Node.js and Express.
 
-      .show {
-        display: block;
-        width: 100%;
-        max-height: 420px;
-        margin-top: 10px;
-        border-radius: 18px;
-        object-fit: contain;
-      }
+```bash
+cd backend
+npm install
+npm start
+```
 
-      .show[src=""] {
-        display: none;
-      }
+### React projects
+Each React app has its own project folder with its own `package.json`.
 
-      @media (max-width: 440px) {
-        .search-form {
-          flex-direction: column;
-        }
+```bash
+cd reactJourney/ecommerceProject
+npm install
+npm run dev
+```
 
-        .input,
-        .submit {
-          min-height: 50px;
-        }
-      }
+Use the appropriate app folder in place of `ecommerceProject` as needed.
 
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          scroll-behavior: auto !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <main class="search-card">
-      <h1>Find your GIF.</h1>
-      <p class="intro">Search a mood, moment, or anything you can imagine.</p>
-      <div class="search-form">
-        <input
-          type="text"
-          placeholder="Try “happy dance”"
-          class="input"
-          aria-label="Search for GIFs"
-        />
-        <button class="submit">Search</button>
-      </div>
-      <p class="message" role="status" aria-live="polite"></p>
-      <img src="" alt="" class="show" />
-    </main>
+## Tech Stack
 
-    <script>
-      const input = document.querySelector(".input");
-      const submitBtn = document.querySelector(".submit");
-      const show = document.querySelector(".show");
-      const message = document.querySelector(".message");
+- JavaScript
+- HTML
+- CSS
+- Node.js
+- Express
+- REST APIs
+- React
+- Vite
+- Jest
 
-      function findGiph() {
-        const inputData = input.value.trim();
+## Notes
 
-        if (inputData === "") {
-          message.textContent = "Enter text to search for GIF images";
-          return;
-        }
+This collection is designed for learning and experimentation. Many apps are intentionally small and focused so each one highlights a specific concept such as:
 
-        message.textContent = "";
-        input.value = "";
+- DOM events
+- API consumption
+- data rendering
+- local state
+- shopping cart logic
+- forms and validation
+- React components and hooks
+- backend routing and JSON data
 
-        const gifUrl = `https://api.giphy.com/v1/gifs/random?api_key=bfqWjTcXvI7Skvj5UKm8MWcXZDOgXuRt&tag=${inputData}&rating=g`;
-        fetch(gifUrl)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(`HTTP error: ${response.status}`);
-            }
-            return response.json();
-          })
+## Suggested Learning Path
 
-          .then((data) => {
-            show.src = data.data.images.original.url;
-            show.alt = data.data.images.original.alt;
-          })
-          .catch((error) => {
-            console.error("Error fetching the image:", error);
-            message.textContent = "Could not load a GIF. Please try again.";
-          });
+1. Start with static JavaScript projects like `calculator`, `noteApp`, and `diceGame`.
+2. Move to API-based projects like `APIS.html`, `giphApi.html`, and `moovie.html`.
+3. Explore the backend folder to understand Express and JSON-backed routes.
+4. Practice React projects in `reactJourney/` once the JavaScript fundamentals are comfortable.
+5. Use `jestTesting/` to reinforce testing habits and debugging.
 
-        console.log(gifUrl);
-      }
+## Summary
 
-      submitBtn.addEventListener("click", findGiph);
+This workspace is a practical collection of mini web apps and coding exercises designed to build confidence in front-end development, JavaScript fundamentals, API usage, and React development.
 
-      input.addEventListener("keydown", (e) => {
-        if (e.key == "Enter") {
-          findGiph();
-        }
-      });
-    </script>
-  </body>
-</html>
-
-
- async function getGif() {
-        const inputData = input.value.trim();
-
-        if (!inputData) {
-          message.textContent = "Enter text to search for GIF images";
-          return;
-        }
-
-        message.textContent = "";
-
-        
-
-        try {
-          const response = await fetch(gifUrl);
-
-          if (!response.ok) {
-            throw new Error(`HTTP error: ${response.status}`);
-          }
-
-          const data = await response.json();
-          show.src = data.data.images.original.url;
-          show.alt = data.data.alt_text || `GIF for ${inputData}`;
-        } catch (error) {
-          console.error(error);
-          message.textContent = "GIF couldn't be loaded. Please try again.";
-        }
-      }
-
-      submitBtn.addEventListener("click", getGif);
-
-      input.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-          getGif();
-        }
-      });
