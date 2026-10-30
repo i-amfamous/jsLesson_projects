@@ -10,6 +10,9 @@ function renderCart() {
     return;
   }
 
+  /*------------------------------------------------
+                      PRODUCT CARD GENERATION 
+    ------------------------------------------------*/
   cart.forEach((item) => {
     const productCard = document.createElement("article");
     productCard.classList.add("productCard");
@@ -58,26 +61,60 @@ function renderCart() {
       renderCart();
     });
 
+    /*------------------------------------------------
+                      SUMMARY
+     ------------------------------------------------*/
+    const totalItemsNumber = document.querySelector('.totalno')
+    totalItemsNumber.textContent = `${cart.length} items`
+
+    const taxAmount = document.querySelector('.taxAmount')
+    const tax = 5;
+    taxAmount.textContent = `$${tax.toFixed(2)}`;
+
+    /*------------------------------------------------
+                    DELIVERY AMOUNT
+     ------------------------------------------------*/
+    const deliveryDate = document.querySelector('.delivery')
+    const deliveryAmount = 5;
+    deliveryDate.textContent = `$${deliveryAmount.toFixed(2)}`
+
+    /*------------------------------------------------
+                     SUB TOTAL PAYMENT
+     ------------------------------------------------*/
+    const subTotalPrice = document.querySelector('.subTotalPrice')
+    const subTotal = cart.reduce((total, cartItem) => {
+      return total + cartItem.price * cartItem.quantity;
+    }, 0);
+
+    subTotalPrice.textContent = `$${subTotal.toFixed(2)}`;
+
+    /*------------------------------------------------
+                      DUE PAYMENT
+     ------------------------------------------------*/
+    const totalPayment = document.querySelector('.totalPayment');
+    const finalPayment = cart.reduce((total, cartItem) => {
+      return total + cartItem.price * cartItem.quantity;
+    }, 0) + deliveryAmount + tax;
+
+    if (cart.length === 0) {
+      totalPayment.textContent = `$ 0.00`;
+    } else {
+      totalPayment.textContent = `$${finalPayment.toFixed(2)}`;
+    }
+
+    /*------------------------------------------------
+                      REMOVE ITEM BTN
+     ------------------------------------------------*/
     const removeButton = document.createElement("button");
     removeButton.type = "button";
     removeButton.classList.add("removeCartItem");
     removeButton.textContent = "Remove";
     removeButton.addEventListener("click", () => {
       cart = cart.filter((cartItem) => cartItem.id !== item.id);
+      
       saveCart();
       renderCart();
     });
-
-    //SUMMARY
-    const totalItemsNumber = document.querySelector('.totalno')
-    totalItemsNumber.textContent = `${cart.length} items`
-
-    const subTotalPrice = document.querySelector('.subTotalPrice')
-    const subTotal = cart.reduce((total, item) =>{
-        return total + item.price * item.quantity
-    }, 0)
-
-    subTotalPrice.textContent = `$${subTotal.toFixed(2)}`
 
     quantityControls.append(
       decreaseButton,
