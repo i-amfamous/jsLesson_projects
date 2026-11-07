@@ -7,89 +7,89 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header>
-        <h1>TechX Movies</h1>
-        <input type="search" class="mySearch" placeholder = "Search for any Movie">
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand-wrap">
+                <span class="brand-badge">T</span>
+                <h1>TechX Movies</h1>
+            </div>
+            <label class="search-box" for="movieSearch">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M10.5 3a7.5 7.5 0 015.9 12.8l4.4 4.4 1.4-1.4-4.4-4.4A7.5 7.5 0 1110.5 3zm0 2a5.5 5.5 0 100 11 5.5 5.5 0 000-11z"/>
+                </svg>
+                <input id="movieSearch" type="search" class="mySearch" placeholder="Search latest and trending movies">
+            </label>
+        </div>
     </header>
 
-    <div class="searchResultsModal">
-        <p>This is ur search results</p>
-        <p>This is ur search results</p>
-        <p>This is ur search results</p>
-        <p>This is ur search results</p>
-        <p>This is ur search results</p>
-        <p>This is ur search results</p>
-        <p>This is ur search results</p>
-        <p>This is ur search results</p>
-        <p>This is ur search results</p>
-        <p>This is ur search results</p>
-        <p>This is ur search results</p>
-        <p>This is ur search results</p>
+    <main class="page-content">
+        <section class="hero">
+            <div class="hero-copy">
+                <h2>Watch the stories everyone is talking about.</h2>
+                <p>Browse the latest releases and the most popular picks from around the world.</p>
+                <div class="hero-actions">
+                    <button class="hero-play" type="button">▶ Play</button>
+                    <button class="hero-more" type="button">More info</button>
+                </div>
+            </div>
+            <div class="hero-badges">
+                <span>New</span>
+                <span>Top 10</span>
+                <span>4K</span>
+            </div>
+        </section>
+
+        <aside class="searchResultsModal" id="searchResultsModal" aria-live="polite">
+            <div class="results-header">
+                <h3>Search results</h3>
+                <button type="button" class="close-results" id="closeResults">Close</button>
+            </div>
+            <ul id="searchResultsList"></ul>
+        </aside>
+
+        <section class="movie-library" aria-label="Movie catalog">
+            <div class="row-header">
+                <h3>Trending now</h3>
+                <button type="button" class="see-all" id="seeAllMovies">See all</button>
+            </div>
+            <div class="moviesDisplay" id="moviesDisplay"></div>
+        </section>
+    </main>
+
+    <div class="movie-modal" id="movieModal" aria-hidden="true">
+        <div class="movie-modal-backdrop" data-close-modal="true"></div>
+        <div class="movie-modal-content" role="dialog" aria-modal="true" aria-labelledby="movieModalTitle">
+            <div class="movie-modal-media">
+                <button class="movie-modal-close" id="closeMovieModal" type="button" aria-label="Close preview">✕</button>
+                <div class="movie-modal-floating">
+                    <div class="movie-modal-brand">
+                        <span class="brand-badge small">T</span>
+                        <span>TechX Originals</span>
+                    </div>
+                    <div class="modal-controls">
+                        <button class="icon-button mute-toggle" id="muteToggle" type="button" aria-label="Mute preview">🔊</button>
+                    </div>
+                </div>
+                <div class="movie-modal-overlay">
+                    <div class="movie-overlay-copy">
+                        <div class="movie-modal-badges">
+                            <span id="movieModalType">Movie</span>
+                            <span id="movieModalYear">2024</span>
+                            <span class="quality-badge">HD</span>
+                        </div>
+                        <h3 id="movieModalTitle">Movie title</h3>
+                        <p id="movieModalText">Enjoy a quick preview and jump into the story.</p>
+                        <div class="modal-cta-row">
+                            <button class="modal-play" type="button">▶ Play</button>
+                            <button class="modal-secondary" type="button">+ My List</button>
+                        </div>
+                    </div>
+                </div>
+                <video id="movieModalVideo" controls playsinline poster=""></video>
+            </div>
+        </div>
     </div>
 
-    <div class="moviesDisplay">
-        <span class="movie">
-            <video src="#" class="movieUrl">Videos Appears Here</video>
-            <p class="name">Movie Name</p>
-            <button class="play">Play Movie</button>
-        </span>
-        <span class="movie">
-            <video src="#">Videos Appears Here</video>
-            <p class="name">Movie Name</p>
-            <button class="play">Play Movie</button>
-        </span>
-        <span class="movie">
-            <video src="#">Videos Appears Here</video>
-            <p class="name">Movie Name</p>
-            <button class="play">Play Movie</button>
-        </span>
-        <span class="movie">
-            <video src="#">Videos Appears Here</video>
-            <p class="name">Movie Name</p>
-            <button class="play">Play Movie</button>
-        </span>
-        <span class="movie">
-            <video src="#">Videos Appears Here</video>
-            <p class="name">Movie Name</p>
-            <button class="play">Play Movie</button>
-        </span>
-        <span class="movie">
-            <video src="#">Videos Appears Here</video>
-            <p class="name">Movie Name</p>
-            <button class="play">Play Movie</button>
-        </span>
-        <span class="movie">
-            <video src="#">Videos Appears Here</video>
-            <p class="name">Movie Name</p>
-            <button class="play">Play Movie</button>
-        </span>
-        <span class="movie">
-            <video src="#">Videos Appears Here</video>
-            <p class="name">Movie Name</p>
-            <button class="play">Play Movie</button>
-        </span>
-        <span class="movie">
-            <video src="#">Videos Appears Here</video>
-            <p class="name">Movie Name</p>
-            <button class="play">Play Movie</button>
-        </span>
-        <span class="movie">
-            <video src="#">Videos Appears Here</video>
-            <p class="name">Movie Name</p>
-            <button class="play">Play Movie</button>
-        </span>
-        <span class="movie">
-            <video src="#">Videos Appears Here</video>
-            <p class="name">Movie Name</p>
-            <button class="play">Play Movie</button>
-        </span>
-        <span class="movie">
-            <video src="#">Videos Appears Here</video>
-            <p class="name">Movie Name</p>
-            <button class="play">Play Movie</button>
-        </span>
-    </div>
     <script src="script.js"></script>
 </body>
 </html>
