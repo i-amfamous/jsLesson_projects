@@ -7,6 +7,7 @@ const Student = (
           isStudent = true 
         }
     ) => {
+
   return (
 <>
     <div className="student">

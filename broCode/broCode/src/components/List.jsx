@@ -21,12 +21,27 @@ const List = (props) => {
         <li key={fruit.id}>{fruit.name} - <b>{fruit.calories}</b> calories</li>
     );
 
+
+const imageUrl = "../favicon.svg"
+
+  const handleClick = (e) => {
+    console.log(e.target.textContent);
+  };
+
+  const hideImage = (e) =>{
+    e.target.style.display = "none"
+  }
+
     return (
         <>
             <ul>{fruitList}</ul>
             
             <h1>Fruits with less than 100 calories</h1>
             <ol>{lowCalorieListItems}</ol>
+             <button onClick={handleClick}>Apple</button>
+            <button onClick={handleClick}>Mango</button>
+            <button onClick={handleClick}>Orange</button>
+            <img height={300} onClick={(e)=> hideImage(e)} src={imageUrl} alt="" />
         </>
     );
 };
