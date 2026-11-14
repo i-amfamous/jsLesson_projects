@@ -18,8 +18,8 @@ const Counter = () => {
   return (
     <div>
         <h1>{count}</h1>
-        <button onClick={increase}>Increase</button>
-        <button onClick={decrease}> Decrease</button>
+        <button onClick={increase}>Increase Number</button>
+        <button onClick={decrease}> Decrease Number</button>
 
         <h3>Employed Status: {employed ? "Yes" : "No"}</h3>
         <button onClick={(e) => employmentStatus(e)}>Toggle Status</button>
