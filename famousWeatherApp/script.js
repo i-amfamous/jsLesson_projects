@@ -2,27 +2,20 @@ const userInput = document.querySelector(".inputField");
 const forecastNAme = document.querySelector(".forecast-name");
 const forecastDescription = document.querySelector(".forecast-description");
 
-/* =============================================
-                HOURS CARDS
-\ =============================================*/
+// References to the hourly forecast cards.
 const now = document.querySelector(".now");
 const getTime = document.querySelectorAll(".time");
 const timeValue = document.querySelectorAll(".value");
 const condition = document.querySelectorAll(".condition");
 
-/* =============================================
-                RIGHT CONTAINER
- =============================================*/
+// References to the current weather summary.
 const pin = document.querySelector("pin");
 const locationNAme = document.querySelector(".location");
 const temperature = document.querySelector(".temperature");
-// const tempCondition = document.querySelector('.condition') repeated
 const stat_item = document.querySelector(".stat-item");
 const weatherSummary = document.querySelector(".weather-summary");
 
-/* =============================================
-                RIGHT CONTAINER CARDS
- =============================================*/
+// References to the current weather detail cards.
 const humidityNumber = document.querySelector(".humidityNumber");
 const windNumber = document.querySelector(".windNumber");
 const uvNumber = document.querySelector(".uvNumber");
@@ -53,9 +46,7 @@ changeDegree.addEventListener("click", () => {
   updateTemperatureDisplay();
 });
 
-/* =============================================
-        FETCHING DATA FROM THE API
- =============================================*/
+// Fetch weather data for the location entered by the user.
 async function getData() {
   const input = userInput.value.trim();
   userInput.value = "";
@@ -85,9 +76,7 @@ async function getData() {
     currentTempFahrenheit = Number(data.currentConditions.temp);
     updateTemperatureDisplay();
 
-    /* ==================================================
-     CHANGED THE SUMMARYCARD BG BASED ON THE WEATHER
-    ====================================================*/
+    // Select a background image that matches the current conditions.
     const currentCondition =
       data.currentConditions.conditions || data.description || "Clear";
     const conditionText = currentCondition.toLowerCase();
@@ -113,9 +102,7 @@ async function getData() {
   `linear-gradient(135deg, rgba(6, 6, 6, 0.55), rgba(227, 242, 255, 0.65)), ` +
   `url('${backgroundImage}')`;
 
-    /* ==================================================
-                SUMMARY CARD CPONDITIONS
-    ====================================================*/
+    // Update each hourly card with the current weather conditions.
     condition.forEach((condition) => {
       condition.textContent = data.currentConditions.conditions;
     });
@@ -135,9 +122,7 @@ async function getData() {
       uvNumber.textContent = "Extreme";
     }
 
-    /* =============================================
-                 TIME  DISPLAY
-    =============================================*/
+    // Populate the hourly forecast, starting with the current hour.
     const hourlyData = data.days?.[0]?.hours ?? [];
     const currentHour = data.currentConditions.datetime?.slice(0, 2);
     const startIndex = hourlyData.findIndex(
@@ -169,28 +154,19 @@ async function getData() {
       cardCondition.textContent = hourData.conditions || "N/A";
     });
 
-// The only code i dont understand how it works only God Know how it worked ;)
-
-    /* =============================================
-               TIME GEGREE DISPLAY
-    =============================================*/
     console.log(data);
   } catch (error) {
     temperature.textContent = "Unavailable";
     console.error(error);
   }
 }
-/* =============================================
-        SEARCH BAR KEYPRESS EVENTCLISTER
- =============================================*/
+// Submit a location search when the user presses Enter.
 userInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     getData();
   }
 });
 
-/* =============================================
-         DEFAULT LOCATION ON START
- =============================================*/
-userInput.value = "Accra"; // Choose your starting city
-getData();                   // Fetch its weather when the page loads
+// Load weather for the default location when the page opens.
+userInput.value = "Accra";
+getData();
